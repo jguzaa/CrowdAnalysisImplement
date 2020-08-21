@@ -15,6 +15,6 @@
 
 #Set up to run the project. Please follow the instruction in this link
 - https://www.pyimagesearch.com/2018/09/19/pip-install-opencv/ (method to install open cv)
-- Download and copy these videos to the project's root folder:
-- Download and copy yolo-coco to the root folder: 
+- Download and copy these videos to the project's root folder: https://drive.google.com/file/d/1r0tPPW9lYA1tAEQ-4xtgDvtgJdFSyGwA/view?usp=sharing
+- Download and copy yolo-coco to the root folder: https://drive.google.com/file/d/1NQ7mQOM0zY-c6hX7OBfHU-Uk3_RC2U1k/view?usp=sharing
 - Run command "python3 run.py" to run the project
