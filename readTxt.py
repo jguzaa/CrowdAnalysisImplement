@@ -37,6 +37,8 @@ for file in list_files:
 
 df = pd.DataFrame(data_arr, columns = col_name)
 
+print(df)
+
 # create the list of the day which data collected
 days = pd.DataFrame(list(range(1, df.shape[0]+1)), columns = ['day'])
 
@@ -60,6 +62,8 @@ for period in col_name:
         predict_list.append(0)
     trending_list.append(lm.coef_[0])
     score_list.append(lm.score(X_test, y_test[period]))
+
+print(score_list)
 
 # Looking for beta value which shows the trend of number in future
 index_max, value_max = max(enumerate(trending_list), key=operator.itemgetter(1))
