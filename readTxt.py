@@ -70,7 +70,7 @@ if len(list_csv) > 0:
 else:
     old_df = pd.DataFrame([], columns=col_name).rename_axis('Date')
 
-updated_df = pd.concat([old_df, df]).drop_duplicates()
+updated_df = pd.merge(old_df, df, how='outer')
 
 print(updated_df)
 
