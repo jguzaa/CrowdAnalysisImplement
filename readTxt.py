@@ -57,7 +57,7 @@ for file in list_files:
         df = df.append(temp_df)
 
     #remove txt file
-    #os.remove('txt/'+file)
+    os.remove('txt/'+file)
 
 print(df)
 
@@ -73,7 +73,8 @@ if len(list_csv) > 0:
 else:
     old_df = pd.DataFrame([], columns=col_name).rename_axis('Date')
 
-updated_df = pd.merge(old_df, df, how='outer')
+updated_df = pd.concat([old_df, df])
+updated_df = updated_df.groupby(level=0).sum()
 
 print(updated_df)
 
