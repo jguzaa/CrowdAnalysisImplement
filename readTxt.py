@@ -56,6 +56,9 @@ for file in list_files:
         # append to main df
         df = df.append(temp_df)
 
+    #remove txt file
+    #os.remove('txt/'+file)
+
 print(df)
 
 # update csv file
