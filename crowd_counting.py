@@ -53,9 +53,13 @@ writer = None
 current_frame = 0
 ppl_count_temp = 0
 data_arr = []
-temp_clip_time = 10
-framerate = 30
-mod_no = (temp_clip_time * 60 * framerate) / 30
+period = 10
+framerate = vs.get(cv2.CAP_PROP_FPS)
+
+# For demo 10 mins clip represent 300 mins
+# mod_no = (peroid * 60 * framerate) / 30
+
+mod_no = (period * 60 * framerate)
 
 
 # loop over the frames from the video stream
@@ -103,6 +107,7 @@ while True:
 	ppl_count_temp += len(results)
 
 	# find the average every 10 minutes
+	# mod_no is no of frames in 10 mins
 	if (current_frame % mod_no) == 0:
 		data_arr.append(int(ppl_count_temp / mod_no))
 		print(data_arr)
