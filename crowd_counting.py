@@ -10,6 +10,7 @@ import imutils
 import cv2
 import os
 
+projectDir = os.path.dirname(os.path.realpath(__file__))
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -22,12 +23,16 @@ ap.add_argument("-d", "--display", type=int, default=1,
 args = vars(ap.parse_args())
 
 # load the COCO class labels our YOLO model was trained on
-labelsPath = os.path.sep.join([config.MODEL_PATH, "coco.names"])
+#labelsPath = os.path.sep.join([config.MODEL_PATH, "coco.names"])
+labelsPath = projectDir + "/yolo-coco/coco.names"
 LABELS = open(labelsPath).read().strip().split("\n")
 
 # derive the paths to the YOLO weights and model configuration
-weightsPath = os.path.sep.join([config.MODEL_PATH, "yolov3.weights"])
-configPath = os.path.sep.join([config.MODEL_PATH, "yolov3.cfg"])
+#weightsPath = os.path.sep.join([config.MODEL_PATH, "yolov3.weights"])
+#configPath = os.path.sep.join([config.MODEL_PATH, "yolov3.cfg"])
+weightsPath = projectDir + "/yolo-coco/yolov3.weights"
+configPath = projectDir + "/yolo-coco/yolov3.cfg"
+
 
 # load our YOLO object detector trained on COCO dataset (80 classes)
 print("[INFO] loading YOLO from disk...")
@@ -143,10 +148,13 @@ while True:
 
 filename = args["input"]
 
+#remove video file
+os.remove(projectDir+"/"+filename)
+
 filename = filename.replace("Footages/", "")
 filename = filename.replace(".m4v", "")
 
-with open('txt/' + filename, 'w') as filehandle:
+with open(projectDir + '/txt/' + filename, 'w') as filehandle:
 	for listitem in data_arr:
 		filehandle.write('%s\n' % listitem)
 	print("======= "+ filename +" is exported =======")

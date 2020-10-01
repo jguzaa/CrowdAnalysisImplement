@@ -6,6 +6,11 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import operator
 
+
+projectDir = os.path.dirname(os.path.realpath(__file__))
+
+print(projectDir)
+
 # set up time for column name
 col_name = []
 for h in range (24):
@@ -19,7 +24,7 @@ for h in range (24):
 
 #read file
 data_row = []
-list_files = os.listdir('txt/')
+list_files = os.listdir(projectDir + '/txt/')
 
 #sort date
 list_files.sort()
@@ -38,7 +43,7 @@ for file in list_files:
     index_start_time = col_name.index(time) + 1
 
     row = []
-    with open('txt/'+file, 'r') as filehandle:
+    with open(projectDir+'/txt/'+file, 'r') as filehandle:
         for line in filehandle:
             # remove linebreak which is the last character of the string
             currentPlace = line[:-1]
@@ -57,18 +62,18 @@ for file in list_files:
         df = df.append(temp_df)
 
     #remove txt file
-    os.remove('txt/'+file)
+    os.remove(projectDir+'/txt/'+file)
 
 print(df)
 
 # update csv file
 
 # import previous csv file
-list_csv = os.listdir('csv/')
+list_csv = os.listdir(projectDir + '/csv/')
 
 # check exiting file
 if len(list_csv) > 0:
-    old_df = pd.read_csv("csv/db.csv")
+    old_df = pd.read_csv(projectDir + "/csv/db.csv")
     old_df = old_df.set_index('Date')
 else:
     old_df = pd.DataFrame([], columns=col_name).rename_axis('Date')
@@ -78,4 +83,4 @@ updated_df = updated_df.groupby(level=0).sum()
 
 print(updated_df)
 
-updated_df.to_csv('csv/db.csv')
+updated_df.to_csv(projectDir + '/csv/db.csv')
